@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - MY PORTFOLIO </title>
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></script>
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+
+            .fade-up.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .gradient-text {
+            background: linear-gradient(to right, #f4b98e, #ffd6a5);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-active {
+            color: #f4b98e !important;
+        }
+    </style>
+</head>
+<body class="bg-[#0d1321] text-white font-sans selection:bg-[#f4b98e] selection:text-black">
+
+
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-[#0d1321]/95 border-b border-[#f4b98e]/20 shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center py-5 px-6 lg:px-8">
+            <a href="/" class="text-2xl md:text-3xl font-extrabold gradient-text hover:scale-105 transition-transform">MY PORTFOLIO</a>
+            <ul class="hidden md:flex space-x-8 text-gray-300 font-semibold text-base">
+                <li><a href="#home" class="nav-link hover:text-[#f4b98e] transition-all duration-300">Home</a></li>
+                <li><a href="#about" class="nav-link hover:text-[#f4b98e] transition-all duration-300">About</a></li>
+                <li><a href="#skills" class="nav-link hover:text-[#f4b98e] transition-all duration-300">Skills</a></li>
+                <li><a href="#projects" class="nav-link hover:text-[#f4b98e] transition-all duration-300">Projects</a></li>
+                <li><a href="#contact" class="nav-link hover:text-[#f4b98e] transition-all duration-300">Contact</a></li>
+            </ul>
+
+
+            <div class="md:hidden text-white text-2xl cursor-pointer hover:text-[#f4b98e] transition" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+
+        <div class="md:hidden hidden flex bg-[#0d1321] border-t border-[#1b2236] justify-center py-2" id="mobile-menu">
+            <a href="#home" class="py-3 px-3 hover:text-[#f4b98e]">Home</a>
+            <a href="#about" class="py-3 px-3 hover:text-[#f4b98e]">About</a>
+            <a href="#skills" class="py-3 px-3 hover:text-[#f4b98e]">Skills</a>
+            <a href="#projects" class="py-3 px-3 hover:text-[#f4b98e]">Projects</a>
+            <a href="#contact" class="py-3 px-3 hover:text-[#f4b98e]">Contact</a>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        @RenderBody()
+    </main>
+
+
+    <footer class="bg-[#0b1020] py-12 text-center border-t border-[#1b2236] mt-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#f4b98e]/5 to-transparent pointer-events-none"></div>
+        <div class="relative z-10">
+            <p class="text-gray-400 text-lg mb-6">&copy; 2025 <span class="text-[#f4b98e] font-bold">Syed Gufran</span> | Designed & Built with <i class="fas fa-heart text-red-500 animate-pulse"></i></p>
+
+            <div class="mt-8 flex items-center justify-center gap-4 text-sm text-gray-500">
+                <span class="flex items-center gap-2"><i class="fas fa-code text-[#f4b98e]"></i> Built with ASP.NET Core</span>
+                <span class="text-[#f4b98e]/30">|</span>
+                <span class="flex items-center gap-2"><i class="fas fa-palette text-[#f4b98e]"></i> Styled with Tailwind CSS</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add("show");
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+
+        const toggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("mobile-menu");
+        toggle.onclick = () => menu.classList.toggle("hidden");
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,468 @@
+﻿@using Microsoft.AspNetCore.Html
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<section id="home" class="relative min-h-screen flex flex-col md:flex-row items-center justify-between px-6 lg:px-8 bg-gradient-to-br from-[#0d1321] via-[#11182d] to-[#1f2840] text-white overflow-hidden">
+
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-[#f4b98e]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#ffd6a5]/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-[#f4b98e]/5 rounded-full blur-2xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+    </div>
+
+
+    <div class="relative z-10 md:w-1/2 max-w-2xl fade-up">
+        <div class="mb-6">
+            <span class="inline-flex items-center px-5 py-3 bg-[#1f2840]/80 backdrop-blur-sm border border-[#f4b98e]/30 rounded-full text-[#f4b98e] text-sm font-bold tracking-wide animate-pulse-slow shadow-lg">
+                <i class="fas fa-rocket mr-2"></i>Welcome to my portfolio
+            </span>
+        </div>
+        <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-6">
+            Hi, I'm <span class="gradient-text block mt-2">Syed Gufran Kazmi</span>
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-gray-300 leading-relaxed mb-10 max-w-xl">
+            A passionate <span class="text-[#f4b98e] font-bold">Full Stack Developer</span> specializing in
+            <span class="text-[#f4b98e] font-bold">ASP.NET Core</span>,
+            <span class="text-[#f4b98e] font-bold">.NET MAUI</span>, and modern hybrid web technologies.
+            I build scalable, efficient, and beautiful applications.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mt-10">
+            <a href="#projects" class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-base font-bold shadow-2xl">
+                <i class="fas fa-briefcase"></i>
+                See My Work
+            </a>
+            <a href="#contact" class="btn-secondary inline-flex items-center gap-2 px-8 py-4 text-base font-bold">
+                <i class="fas fa-envelope"></i>
+                Contact Me
+            </a>
+            <a href="images/resume.pdf" download class="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-gray-500 text-gray-300 hover:border-[#f4b98e] hover:text-[#f4b98e] hover:scale-105 transition-all duration-300 font-semibold">
+                <i class="fas fa-download"></i>
+                Download CV
+            </a>
+        </div>
+
+
+        <div class="flex gap-5 mt-12 items-center">
+            <span class="text-gray-400 font-semibold text-sm uppercase tracking-wider mr-2">Connect:</span>
+            <a href="https://github.com/SYEDGUFRANKAZMI" target="_blank" class="group relative w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[#1f2840] to-[#2a3550] border-2 border-[#f4b98e]/50 rounded-2xl hover:border-[#f4b98e] hover:bg-[#f4b98e] hover:shadow-2xl hover:shadow-[#f4b98e]/50 hover:scale-110 hover:-rotate-3 transition-all duration-500">
+                <i class="fab fa-github text-3xl text-[#f4b98e] group-hover:text-black transition-colors duration-300"></i>
+                <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#f4b98e] text-black px-3 py-1 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">GitHub</div>
+            </a>
+            <a href="https://linkedin.com/in/syed-gufran-kazmi" target="_blank" class="group relative w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[#1f2840] to-[#2a3550] border-2 border-[#f4b98e]/50 rounded-2xl hover:border-[#0077b5] hover:bg-[#0077b5] hover:shadow-2xl hover:shadow-[#0077b5]/50 hover:scale-110 hover:-rotate-3 transition-all duration-500">
+                <i class="fab fa-linkedin-in text-3xl text-[#f4b98e] group-hover:text-white transition-colors duration-300"></i>
+                <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#0077b5] text-white px-3 py-1 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LinkedIn</div>
+            </a>
+
+            <a href="https://instagram.com/_syed_15__" target="_blank" class="group relative w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[#1f2840] to-[#2a3550] border-2 border-[#f4b98e]/50 rounded-2xl hover:border-[#C13584] hover:bg-[#C13584] hover:shadow-2xl hover:shadow-[#C13584]/50 hover:scale-110 hover:-rotate-3 transition-all duration-500">
+                <i class="fab fa-instagram text-3xl text-[#f4b98e] group-hover:text-white transition-colors duration-300"></i>
+                <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#C13584] text-white px-3 py-1 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Instagram</div>
+            </a>
+
+            <a href="https://wa.me/919616201715" target="_blank" class="group relative w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[#1f2840] to-[#2a3550] border-2 border-[#f4b98e]/50 rounded-2xl hover:border-[#25D366] hover:bg-[#25D366] hover:shadow-2xl hover:shadow-[#25D366]/50 hover:scale-110 hover:-rotate-3 transition-all duration-500">
+                <i class="fab fa-whatsapp text-3xl text-[#f4b98e] group-hover:text-white transition-colors duration-300"></i>
+                <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#25D366] text-white px-3 py-1 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">WhatsApp</div>
+            </a>
+            <a href="mailto:sgkazmi15004@gmail.com" target="_blank" class="group relative w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[#1f2840] to-[#2a3550] border-2 border-[#f4b98e]/50 rounded-2xl hover:border-[#EA4335] hover:bg-[#EA4335] hover:shadow-2xl hover:shadow-[#EA4335]/50 hover:scale-110 hover:-rotate-3 transition-all duration-500">
+                <i class="fas fa-envelope text-3xl text-[#f4b98e] group-hover:text-white transition-colors duration-300"></i>
+                <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#EA4335] text-white px-3 py-1 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Email</div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="relative z-10 md:w-1/2 mt-16 md:mt-0 fade-up flex justify-center md:justify-end">
+        <div class="relative inline-block">
+            <div class="absolute inset-0 bg-[#f4b98e]/20 rounded-full blur-3xl animate-glow"></div>
+            <img src="~/images/hero-illustration.png" alt="Developer Illustration" class="hero-image relative w-full max-w-lg md:max-w-xl mx-auto drop-shadow-2xl animate-float" />
+        </div>
+    </div>
+</section>
+
+
+<section id="about" class="section-padding bg-secondary">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+
+            <div class="fade-up">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-accent/20 rounded-3xl blur-2xl"></div>
+                    <img src="~/images/profile.png" class="relative rounded-3xl w-full shadow-2xl border-4 border-accent/20 hover:scale-105 transition-transform duration-500" alt="Syed Gufran Profile" />
+                </div>
+            </div>
+
+            <div class="fade-up">
+                <h2 class="section-title text-4xl md:text-5xl font-bold mb-6">
+                    About Me
+                </h2>
+
+                <p class="text-gray-300 leading-relaxed mb-6 text-lg">
+                    I am a highly motivated **Full Stack Developer** and a final-year <span class="text-accent font-semibold">B.Tech CSE student</span> with a passion for building robust applications. My core goal is transforming complex ideas into **scalable, high-performance web and mobile solutions**.
+                </p>
+
+                <p class="text-gray-300 leading-relaxed mb-8 text-lg">
+                    I specialize in the Microsoft stack, including <span class="text-accent font-semibold">ASP.NET Core MVC</span>, <span class="text-accent font-semibold">C#</span>, and **cross-platform mobile development** with <span class="text-accent font-semibold">.NET MAUI</span> and **Blazor Hybrid**. I am adept at database and ORM techniques using <span class="text-accent font-semibold">EF Core</span> and **Dapper**, always prioritizing **Clean Architecture** and a perfect balance of functionality and modern UI design.
+                </p>
+
+
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div class="text-center p-4 bg-tertiary rounded-xl hover:scale-105 transition-transform">
+                        <h3 class="text-3xl font-bold text-accent mb-1">15+</h3>
+                        <p class="text-sm text-gray-400">Projects</p>
+                    </div>
+                    <div class="text-center p-4 bg-tertiary rounded-xl hover:scale-105 transition-transform">
+                        <h3 class="text-3xl font-bold text-accent mb-1">3+</h3>
+                        <p class="text-sm text-gray-400">Years Exp</p>
+                    </div>
+                    <div class="text-center p-4 bg-tertiary rounded-xl hover:scale-105 transition-transform">
+                        <h3 class="text-3xl font-bold text-accent mb-1">10+</h3>
+                        <p class="text-sm text-gray-400">Technologies</p>
+                    </div>
+                </div>
+
+                <a href="#skills" class="btn-primary inline-flex items-center gap-2">
+                    <i class="fas fa-code"></i>
+                    View My Skills
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="skills" class="section-padding bg-primary">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-4">
+                Technical Skills
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                Here are the technologies and tools I work with to bring ideas to life
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="card fade-up group">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-server text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent">Backend</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var skill in new[] { "C# / .NET", "ASP.NET Core MVC", ".NET MAUI", "Blazor Hybrid", "REST APIs", "SignalR" })
+                    {
+                        <span class="skill-badge">@skill</span>
+                    }
+                </div>
+            </div>
+
+
+            <div class="card fade-up group" style="animation-delay: 0.1s;">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-paint-brush text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent">Frontend</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var skill in new[] { "HTML5 / CSS3", "JavaScript", "jQuery", "Tailwind CSS", "Bootstrap", "Razor Pages" })
+                    {
+                        <span class="skill-badge">@skill</span>
+                    }
+                </div>
+            </div>
+
+            <div class="card fade-up group" style="animation-delay: 0.2s;">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-database text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent">Database</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var skill in new[] { "SQL Server", "PostgreSQL", "EF Core", "Dapper", "LINQ", "MySQL" })
+                    {
+                        <span class="skill-badge">@skill</span>
+                    }
+                </div>
+            </div>
+
+
+            <div class="card fade-up group" style="animation-delay: 0.3s;">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-tools text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent">Tools & DevOps</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var skill in new[] { "Git / GitHub", "Visual Studio", "VS Code", "Docker", "Azure", "Postman" })
+                    {
+                        <span class="skill-badge">@skill</span>
+                    }
+                </div>
+            </div>
+
+            <div class="card fade-up group" style="animation-delay: 0.4s;">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent">Languages</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var skill in new[] { "C#", "Python", "JavaScript", "TypeScript", "SQL", "Bash" })
+                    {
+                        <span class="skill-badge">@skill</span>
+                    }
+                </div>
+            </div>
+
+
+            <div class="card fade-up group" style="animation-delay: 0.5s;">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-lightbulb text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent">Concepts</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var skill in new[] { "OOP", "SOLID", "Design Patterns", "Clean Architecture", "Agile", "CI/CD" })
+                    {
+                        <span class="skill-badge">@skill</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="projects" class="section-padding bg-secondary">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-4">
+                Featured Projects
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                A showcase of my recent work and personal projects
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @{
+
+                var projects = new[] {
+                        new {
+                        Title = "Business Website 1",
+                        Tech = "ASP.NET Webform, ADO.NET, SQL SERVER EXPRESS",
+                        Description = "An enterprise-level platform utilizing the traditional <b>ASP.NET WebForms</b> architecture and <b>ADO.NET</b> for robust, high-availability data handling. Focused on deep integration and reliability for core business operations.",
+                        Image = "sample1.png", Github = "https://github.com/SYEDGUFRANKAZMI/RafufAlBahar", Demo = "#", Delay = "0s"
+                        },
+                        new {
+                        Title = "Business Website 2",
+                        Tech = "ASP.CORE MVC, C#, Dapper",
+                        Description = "A modern, high-performance solution built with <b>ASP.NET Core MVC</b>. Features the lightweight <b>Dapper</b> ORM for fast data access, showcasing a commitment to scalable, efficient, and maintainable code.",
+                        Image = "sample2.png", Github = "#", Demo = "#", Delay = "0.1s"
+                        },
+                        new {
+                        Title = "Online Attendence System",
+                        Tech = "ASP.NET Core MVC, C#, Dapper",
+                        Description = "A real-time attendance management system developed with <b>ASP.NET Core MVC</b> and <b>Dapper</b>. Provides a secure and streamlined solution for digital clock-in/out, focusing on accuracy and performance.",
+                        Image = "sample3.png", Github = "https://github.com/SYEDGUFRANKAZMI/OnlineAttendenceSystem", Demo = "#", Delay = "0.2s"
+                        },
+                        new {
+                        Title = "PDF Tool - A Mobile Appliction",
+                        Tech = ".NET MAUI, XMl, C#",
+                        Description = "A cross-platform utility built with <b>.NET MAUI</b>, enabling users to manage and manipulate PDF files natively on Android, iOS, and desktop. Highlights expertise in mobile development and hybrid technology.",
+                        Image = "sample5.png", Github = "#", Demo = "#", Delay = "0.4s"
+                        },
+                        new {
+                        Title = "My Portfolio",
+                        Tech = "ASP.NET Core MVC, Tailwind CSS",
+                        Description = "This responsive portfolio site, built with <b>ASP.NET Core MVC</b> and modern <b>Tailwind CSS</b>, demonstrates skills in clean architecture, engaging UI/UX design, and fast front-end development.",
+                        Image = "sample6.png", Github = "https://github.com/SYEDGUFRANKAZMI/MyPortfolio", Demo = "#", Delay = "0.5s"
+                        }
+                        };
+
+                foreach (var project in projects)
+                {
+                    <div class="project-card fade-up" style="animation-delay: @project.Delay;">
+                        <div class="overflow-hidden rounded-t-2xl">
+                            <img src="~/images/@project.Image" class="project-image" alt="@project.Title" />
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2 text-accent">@project.Title</h3>
+                            <p class="text-gray-400 mb-4 text-sm">@project.Tech</p>
+
+                            <p class="text-gray-300 mb-6 leading-relaxed">
+                                @Html.Raw(project.Description)
+                            </p>
+                            <div class="flex gap-3">
+                                <a href="@project.Github" target="_blank" class="flex-1 text-center px-4 py-2 bg-accent text-black rounded-lg font-semibold hover:scale-105 transition-transform">
+                                    <i class="fab fa-github mr-2"></i>GitHub
+                                </a>
+                                <a href="@project.Demo" target="_blank" class="flex-1 text-center px-4 py-2 border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-black transition-all">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="text-center mt-12 fade-up">
+            <a href="https://github.com/SYEDGUFRANKAZMI" target="_blank" class="btn-secondary inline-flex items-center gap-2">
+                <i class="fab fa-github"></i>
+                View All Projects on GitHub
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="contact" class="section-padding bg-primary">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-up">
+            <h2 class="section-title text-4xl md:text-5xl font-bold mb-4">
+                Get In Touch
+            </h2>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                Have a project in mind? Let's work together to bring your ideas to life
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+
+            <div class="fade-up">
+                <div class="space-y-6">
+
+                    <div class="flex items-start gap-4 p-6 bg-tertiary rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-[#f4b98e]/20 transition-all duration-300 group">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#f4b98e]/20 to-[#ffd6a5]/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-envelope text-[#f4b98e] text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+                                Email
+                                <i class="fas fa-arrow-right text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </h3>
+                            <a href="mailto:sgkazmi15004@gmail.com" class="text-gray-400 hover:text-accent transition">sgkazmi15004@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 p-6 bg-tertiary rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-[#f4b98e]/20 transition-all duration-300 group">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#f4b98e]/20 to-[#ffd6a5]/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-phone text-[#f4b98e] text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+                                Phone
+                                <i class="fas fa-arrow-right text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </h3>
+                            <a href="tel:+919616201715" class="text-gray-400 hover:text-accent transition">+91 96162 01715</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 p-6 bg-tertiary rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-[#f4b98e]/20 transition-all duration-300 group">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#f4b98e]/20 to-[#ffd6a5]/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-map-marker-alt text-[#f4b98e] text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+                                Location
+                                <i class="fas fa-arrow-right text-sm text-accent opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </h3>
+                            <p class="text-gray-400">Lucknow, Uttar Pradesh, India</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-6 bg-gradient-to-br from-accent/10 to-gold/10 rounded-xl border border-accent/20">
+                    <h3 class="text-xl font-bold mb-4 text-accent flex items-center gap-2">
+                        <i class="fas fa-rocket text-2xl"></i>
+                        Let's Connect!
+                    </h3>
+                    <p class="text-gray-300 mb-4">Follow me on social media for updates and tech insights</p>
+                    <div class="flex gap-3">
+                        <a href="https://github.com/SYEDGUFRANKAZMI" target="_blank" class="group flex-1 text-center py-4 bg-[#1f2840] border-2 border-[#f4b98e]/50 rounded-xl hover:bg-[#333] hover:border-[#333] hover:scale-105 transition-all duration-300">
+                            <i class="fab fa-github text-2xl text-[#f4b98e] group-hover:text-white transition-colors"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/syed-gufran-kazmi" target="_blank" class="group flex-1 text-center py-4 bg-[#1f2840] border-2 border-[#f4b98e]/50 rounded-xl hover:bg-[#0077b5] hover:border-[#0077b5] hover:scale-105 transition-all duration-300">
+                            <i class="fab fa-linkedin-in text-2xl text-[#f4b98e] group-hover:text-white transition-colors"></i>
+                        </a>
+
+                        <a href="https://instagram.com/_syed_15__" target="_blank" class="group flex-1 text-center py-4 bg-[#1f2840] border-2 border-[#f4b98e]/50 rounded-xl hover:bg-[#C13584] hover:border-[#C13584] hover:scale-105 transition-all duration-300">
+                            <i class="fab fa-instagram text-2xl text-[#f4b98e] group-hover:text-white transition-colors"></i>
+                        </a>
+                        <a href="https://wa.me/919616201715" target="_blank" class="group flex-1 text-center py-4 bg-[#1f2840] border-2 border-[#f4b98e]/50 rounded-xl hover:bg-[#25D366] hover:border-[#25D366] hover:scale-105 transition-all duration-300">
+                            <i class="fab fa-whatsapp text-2xl text-[#f4b98e] group-hover:text-white transition-colors"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="fade-up">
+                <form class="space-y-6 p-8 bg-tertiary rounded-2xl shadow-xl" method="post" asp-action="SendMessage">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold mb-2 text-gray-300">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" class="form-input" required />
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-semibold mb-2 text-gray-300">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" class="form-input" required />
+                    </div>
+
+                    <div>
+                        <label for="subject" class="block text-sm font-semibold mb-2 text-gray-300">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Project Inquiry" class="form-input" required />
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-semibold mb-2 text-gray-300">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project..." rows="6" class="form-textarea" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full py-4 text-lg">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="max-w-7xl mx-auto mb-6">
+        <div class="bg-green-500/20 border-2 border-green-500 text-green-400 px-6 py-4 rounded-xl flex items-center gap-3">
+            <i class="fas fa-check-circle text-2xl"></i>
+            <p class="font-semibold">@TempData["SuccessMessage"]</p>
+        </div>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="max-w-7xl mx-auto mb-6">
+        <div class="bg-red-500/20 border-2 border-red-500 text-red-400 px-6 py-4 rounded-xl flex items-center gap-3">
+            <i class="fas fa-exclamation-circle text-2xl"></i>
+            <p class="font-semibold">@TempData["ErrorMessage"]</p>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        console.log('Portfolio page loaded successfully!');
+    </script>
+}
