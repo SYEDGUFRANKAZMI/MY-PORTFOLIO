@@ -30,11 +30,10 @@ namespace MY_PORTFOLIO.Controllers
             if (!ModelState.IsValid)
                 return View("Index", model);
 
-          
+            // Read credentials from environment or fallback to config
             var fromEmail = Environment.GetEnvironmentVariable("EMAIL_FROM");
             var fromPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
 
-          
             if (string.IsNullOrEmpty(fromEmail))
                 fromEmail = _config["EmailSettings:FromEmail"];
             if (string.IsNullOrEmpty(fromPassword))
@@ -42,11 +41,12 @@ namespace MY_PORTFOLIO.Controllers
 
             if (string.IsNullOrEmpty(fromEmail) || string.IsNullOrEmpty(fromPassword))
             {
-                _logger.LogError("❌ Email configuration missing (check Render environment variables).");
+                _logger.LogError("❌ Email configuration missing. Check environment variables on Render.");
                 TempData["ErrorMessage"] = "❌ Email service is not configured properly.";
                 return RedirectToAction("Index");
             }
 
+            // Email to yourself
             var messageToMe = new MimeMessage();
             messageToMe.From.Add(new MailboxAddress("Portfolio Contact Form", fromEmail));
             messageToMe.To.Add(new MailboxAddress("Syed Gufran Kazmi", fromEmail));
@@ -56,6 +56,7 @@ namespace MY_PORTFOLIO.Controllers
                 Text = $"Name: {model.Name}\nEmail: {model.Email}\nSubject: {model.Subject}\n\nMessage:\n{model.Message}"
             };
 
+            // Auto-reply email to user
             var autoReply = new MimeMessage();
             autoReply.From.Add(new MailboxAddress("Syed Gufran Kazmi", fromEmail));
             autoReply.To.Add(new MailboxAddress(model.Name, model.Email));
@@ -71,33 +72,33 @@ namespace MY_PORTFOLIO.Controllers
                 {
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                    _logger.LogInformation("Connecting to SMTP server...");
-                    await client.ConnectAsync("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                    _logger.LogInformation("Connecting to SendGrid SMTP...");
+                    await client.ConnectAsync("smtp.sendgrid.net", 587, MailKit.Security.SecureSocketOptions.StartTls);
 
-                    _logger.LogInformation("Authenticating...");
-                    await client.AuthenticateAsync(fromEmail, fromPassword);
+                    _logger.LogInformation("Authenticating with SendGrid...");
+                    await client.AuthenticateAsync("apikey", fromPassword); // username always "apikey"
 
-                    _logger.LogInformation("Sending email to yourself...");
+                    _logger.LogInformation("Sending admin email...");
                     await client.SendAsync(messageToMe);
 
-                    _logger.LogInformation("Sending auto-reply...");
+                    _logger.LogInformation("Sending auto-reply email...");
                     await client.SendAsync(autoReply);
 
                     await client.DisconnectAsync(true);
-                    _logger.LogInformation("✅ Email sent successfully!");
+                    _logger.LogInformation("✅ Email sent successfully via SendGrid!");
                 }
 
                 TempData["SuccessMessage"] = "✅ Your message has been sent successfully!";
             }
             catch (MailKit.Security.AuthenticationException authEx)
             {
-                _logger.LogError(authEx, "Authentication failed — check your email and App Password!");
+                _logger.LogError(authEx, "Authentication failed — check your SendGrid API key!");
                 TempData["ErrorMessage"] = "❌ Email authentication failed. Please contact the administrator.";
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Email sending failed: {Message}", ex.Message);
-                TempData["ErrorMessage"] = "❌ Something went wrong while sending the message. Please try again later.";
+                TempData["ErrorMessage"] = "❌ Something went wrong while sending your message. Please try again later.";
             }
 
             return RedirectToAction("Index");
