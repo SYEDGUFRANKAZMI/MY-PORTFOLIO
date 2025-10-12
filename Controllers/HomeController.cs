@@ -1,14 +1,13 @@
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MY_PORTFOLIO.Models;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Net.Http;
+using System.Collections.Generic;
 
-using SendGrid;
-using SendGrid.Helpers.Mail; 
-
+// सुनिश्चित करें कि MimeKit, MailKit, SendGrid के सारे पुराने using statements हटा दिए गए हैं।
 
 namespace MY_PORTFOLIO.Controllers
 {
@@ -28,71 +27,77 @@ namespace MY_PORTFOLIO.Controllers
             return View();
         }
 
-      // --- नया HomeController.cs ---
-
-// --- MY_PORTFOLIO.Controllers/HomeController.cs में SendMessage Method ---
-
-[HttpPost]
-public async Task<IActionResult> SendMessage(ContactForm model)
-{
-    if (!ModelState.IsValid)
-        return View("Index", model);
-
-    // Render Environment Variables से सीधे API Key और Email पढ़ें
-    // 'SendGrid:ApiKey' को Environment Variable में 'SendGrid__ApiKey' के रूप में सेट किया जाना चाहिए।
-    // 'EmailSettings:FromEmail' को Environment Variable में 'EmailSettings__FromEmail' के रूप में सेट किया जाना चाहिए।
-    var sendGridKey = _config["SendGrid:ApiKey"];
-    var senderEmail = _config["EmailSettings:FromEmail"];
-
-    if (string.IsNullOrEmpty(sendGridKey) || string.IsNullOrEmpty(senderEmail))
-    {
-        _logger.LogError("❌ Email configuration missing. Check environment variables (SendGrid__ApiKey, EmailSettings__FromEmail) on Render.");
-        TempData["ErrorMessage"] = "❌ Email service is not configured properly.";
-        return RedirectToAction("Index");
-    }
-
-    var client = new SendGridClient(sendGridKey);
-    var fromAddress = new EmailAddress(senderEmail, "Syed Gufran Kazmi");
-    var toAddress = new EmailAddress(senderEmail, "Syed Gufran Kazmi (Admin)");
-
-    try
-    {
-        // 1. Admin को ईमेल भेजें
-        var subjectToMe = $"New message from {model.Name}";
-        var contentToMe = $"Name: {model.Name}<br>Email: {model.Email}<br>Subject: {model.Subject}<br><br>Message:<br>{model.Message}";
-        var msgToMe = MailHelper.CreateSingleEmail(fromAddress, toAddress, subjectToMe, null, contentToMe);
-
-        // 2. User को ऑटो-रिप्लाई भेजें
-        var subjectAutoReply = "Thanks for contacting me!";
-        var contentAutoReply = $"Hello {model.Name},<br><br>Thanks for reaching out! I've received your message and will get back to you soon.<br><br>Best regards,<br>Syed Gufran Kazmi";
-        var msgAutoReply = MailHelper.CreateSingleEmail(fromAddress, new EmailAddress(model.Email, model.Name), subjectAutoReply, null, contentAutoReply);
-
-        // दोनों ईमेल SendGrid API के माध्यम से भेजें
-        var responseToMe = await client.SendEmailAsync(msgToMe);
-        var responseAutoReply = await client.SendEmailAsync(msgAutoReply);
-
-        if (responseToMe.IsSuccessStatusCode && responseAutoReply.IsSuccessStatusCode)
+        [HttpPost]
+        public async Task<IActionResult> SendMessage(ContactForm model)
         {
-            _logger.LogInformation("✅ Email sent successfully via SendGrid API!");
-            TempData["SuccessMessage"] = "✅ Your message has been sent successfully!";
-        }
-        else
-        {
-            // SendGrid API से Error body को लॉग करें
-            var errorBody = await responseToMe.Body.ReadAsStringAsync();
-            _logger.LogError($"❌ SendGrid API call failed. Status: {responseToMe.StatusCode}. Response: {errorBody}");
-            TempData["ErrorMessage"] = "❌ Something went wrong while sending your message. Please try again later.";
-        }
-    }
-    catch (Exception ex)
-    {
-        _logger.LogError(ex, "Email sending failed: {Message}", ex.Message);
-        TempData["ErrorMessage"] = "❌ Something went wrong. Please try again later.";
-    }
+            if (!ModelState.IsValid)
+                return View("Index", model);
 
-    return RedirectToAction("Index");
-}
-// --- SendMessage Method समाप्त ---
+            // 1. Environment Variables से Values पढ़ें
+            var apiKey = _config["ElasticEmail:ApiKey"];
+            var fromEmail = _config["EmailSettings:FromEmail"]; 
+            var adminEmail = fromEmail; // Admin और Sender ID एक ही होगी
+
+            if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(fromEmail))
+            {
+                _logger.LogError("❌ Elastic Email configuration missing. Check API Key/From Email on Render.");
+                TempData["ErrorMessage"] = "❌ Email service is not fully configured.";
+                return RedirectToAction("Index");
+            }
+
+            // Elastic Email API URL (v2.5)
+            var requestUrl = "https://api.elasticemail.com/v2/email/send";
+            
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    // 1. Admin को ईमेल भेजें (Client Message)
+                    var adminData = new Dictionary<string, string>
+                    {
+                        {"apikey", apiKey},
+                        {"from", fromEmail},
+                        {"fromName", "Syed Gufran Kazmi"},
+                        {"to", adminEmail},
+                        {"subject", $"New message from {model.Name}"},
+                        {"bodyHtml", $"Name: {model.Name}<br>Email: {model.Email}<br>Subject: {model.Subject}<br><br>Message:<br>{model.Message}"}
+                    };
+                    var responseAdmin = await client.PostAsync(requestUrl, new FormUrlEncodedContent(adminData));
+
+                    // 2. User को ऑटो-रिप्लाई भेजें
+                    var autoReplyData = new Dictionary<string, string>
+                    {
+                        {"apikey", apiKey},
+                        {"from", fromEmail},
+                        {"fromName", "Syed Gufran Kazmi"},
+                        {"to", model.Email},
+                        {"subject", "Thanks for contacting me!"},
+                        {"bodyHtml", $"Hello {model.Name},<br><br>Thanks for reaching out! I've received your message and will get back to you soon.<br><br>Best regards,<br>Syed Gufran Kazmi"}
+                    };
+                    var responseReply = await client.PostAsync(requestUrl, new FormUrlEncodedContent(autoReplyData));
+
+                    if (responseAdmin.IsSuccessStatusCode && responseReply.IsSuccessStatusCode)
+                    {
+                        _logger.LogInformation("✅ Emails sent successfully via Elastic Email API!");
+                        TempData["SuccessMessage"] = "✅ Your message has been sent successfully!";
+                    }
+                    else
+                    {
+                        // Error Response हैंडल करें
+                        var errorBody = await responseAdmin.Content.ReadAsStringAsync();
+                        _logger.LogError($"❌ Elastic Email API call failed. Status: {responseAdmin.StatusCode}. Response: {errorBody}");
+                        TempData["ErrorMessage"] = "❌ Something went wrong while sending your message.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Elastic Email sending failed.");
+                TempData["ErrorMessage"] = "❌ Something went wrong. Please try again later.";
+            }
+
+            return RedirectToAction("Index");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
