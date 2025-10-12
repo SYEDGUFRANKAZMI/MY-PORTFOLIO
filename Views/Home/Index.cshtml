@@ -51,7 +51,7 @@
                 <i class="fab fa-github text-3xl text-[#f4b98e] group-hover:text-black transition-colors duration-300"></i>
                 <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#f4b98e] text-black px-3 py-1 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">GitHub</div>
             </a>
-            <a href="https://linkedin.com/in/syed-gufran-kazmi" target="_blank" class="group relative w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[#1f2840] to-[#2a3550] border-2 border-[#f4b98e]/50 rounded-2xl hover:border-[#0077b5] hover:bg-[#0077b5] hover:shadow-2xl hover:shadow-[#0077b5]/50 hover:scale-110 hover:-rotate-3 transition-all duration-500">
+            <a href="https://linkedin.com/in/syedgufrankazmi" target="_blank" class="group relative w-16 h-16 flex items-center justify-center bg-gradient-to-br from-[#1f2840] to-[#2a3550] border-2 border-[#f4b98e]/50 rounded-2xl hover:border-[#0077b5] hover:bg-[#0077b5] hover:shadow-2xl hover:shadow-[#0077b5]/50 hover:scale-110 hover:-rotate-3 transition-all duration-500">
                 <i class="fab fa-linkedin-in text-3xl text-[#f4b98e] group-hover:text-white transition-colors duration-300"></i>
                 <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#0077b5] text-white px-3 py-1 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LinkedIn</div>
             </a>
@@ -153,7 +153,7 @@
                     <h3 class="text-2xl font-bold text-accent">Backend</h3>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    @foreach (var skill in new[] { "C# / .NET", "ASP.NET Core MVC", ".NET MAUI", "Blazor Hybrid", "REST APIs", "SignalR" })
+                    @foreach (var skill in new[] { "C# / .NET", "ASP.NET Core MVC", "Blazor", "REST APIs" })
                     {
                         <span class="skill-badge">@skill</span>
                     }
@@ -200,7 +200,7 @@
                     <h3 class="text-2xl font-bold text-accent">Tools & DevOps</h3>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    @foreach (var skill in new[] { "Git / GitHub", "Visual Studio", "VS Code", "Docker", "Azure", "Postman" })
+                    @foreach (var skill in new[] { "Git / GitHub", "Visual Studio", "VS Code", "Docker", "Azure" })
                     {
                         <span class="skill-badge">@skill</span>
                     }
@@ -215,7 +215,21 @@
                     <h3 class="text-2xl font-bold text-accent">Languages</h3>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    @foreach (var skill in new[] { "C#", "Python", "JavaScript", "TypeScript", "SQL", "Bash" })
+                    @foreach (var skill in new[] { "C#", "Python", "JavaScript", "C", "SQL", "Bash" })
+                    {
+                        <span class="skill-badge">@skill</span>
+                    }
+                </div>
+            </div>
+            <div class="card fade-up group" style="animation-delay: 0.4s;">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent"> Mobile Applications </h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    @foreach (var skill in new[] { "C#", "Xamarin", ".NET MAUI", "MAUI+Blazor Hybrid App", "XML", })
                     {
                         <span class="skill-badge">@skill</span>
                     }
@@ -231,7 +245,7 @@
                     <h3 class="text-2xl font-bold text-accent">Concepts</h3>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    @foreach (var skill in new[] { "OOP", "SOLID", "Design Patterns", "Clean Architecture", "Agile", "CI/CD" })
+                    @foreach (var skill in new[] { "OOP", "SOLID", "Design Patterns", "Clean Architecture", "MVC Architecture" })
                     {
                         <span class="skill-badge">@skill</span>
                     }
