@@ -16,11 +16,7 @@
 # Mono auto generated files
 mono_crash.*
 
-# Secret or sensitive config files
-secret.json
-secrets.json
-appsettings.Secret.json
-appsettings.Secrets.json
+
 
 
 # Build results
