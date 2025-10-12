@@ -1,11 +1,10 @@
-﻿using MimeKit;
+using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using MY_PORTFOLIO.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 
 namespace MY_PORTFOLIO.Controllers
 {
@@ -24,19 +23,26 @@ namespace MY_PORTFOLIO.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> SendMessage(ContactForm model)
         {
             if (!ModelState.IsValid)
                 return View("Index", model);
 
-            var fromEmail = _config["EmailSettings:FromEmail"];
-            var fromPassword = _config["EmailSettings:Password"];
+          
+            var fromEmail = Environment.GetEnvironmentVariable("EMAIL_FROM");
+            var fromPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
 
-            
+          
+            if (string.IsNullOrEmpty(fromEmail))
+                fromEmail = _config["EmailSettings:FromEmail"];
+            if (string.IsNullOrEmpty(fromPassword))
+                fromPassword = _config["EmailSettings:Password"];
+
             if (string.IsNullOrEmpty(fromEmail) || string.IsNullOrEmpty(fromPassword))
             {
-                _logger.LogError("Email configuration is missing!");
+                _logger.LogError("❌ Email configuration missing (check Render environment variables).");
                 TempData["ErrorMessage"] = "❌ Email service is not configured properly.";
                 return RedirectToAction("Index");
             }
@@ -63,7 +69,6 @@ namespace MY_PORTFOLIO.Controllers
             {
                 using (var client = new SmtpClient())
                 {
-                    
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
                     _logger.LogInformation("Connecting to SMTP server...");
@@ -79,14 +84,14 @@ namespace MY_PORTFOLIO.Controllers
                     await client.SendAsync(autoReply);
 
                     await client.DisconnectAsync(true);
-                    _logger.LogInformation("Email sent successfully!");
+                    _logger.LogInformation("✅ Email sent successfully!");
                 }
 
                 TempData["SuccessMessage"] = "✅ Your message has been sent successfully!";
             }
             catch (MailKit.Security.AuthenticationException authEx)
             {
-                _logger.LogError(authEx, "Authentication failed - Check your email and app password!");
+                _logger.LogError(authEx, "Authentication failed — check your email and App Password!");
                 TempData["ErrorMessage"] = "❌ Email authentication failed. Please contact the administrator.";
             }
             catch (Exception ex)
