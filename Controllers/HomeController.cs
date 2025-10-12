@@ -5,6 +5,8 @@ using MY_PORTFOLIO.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace MY_PORTFOLIO.Controllers
 {
