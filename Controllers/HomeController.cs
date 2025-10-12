@@ -26,7 +26,12 @@ namespace MY_PORTFOLIO.Controllers
         {
             return View();
         }
-
+ [HttpPost]
+        public IActionResult SendMessage(ContactForm model)
+        {
+            
+            return RedirectToAction("Index");
+        }
     
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
