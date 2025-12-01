@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Collections.Generic;
 
-// सुनिश्चित करें कि MimeKit, MailKit, SendGrid के सारे पुराने using statements हटा दिए गए हैं।
+
 
 namespace MY_PORTFOLIO.Controllers
 {
